@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using ASPNETCoreSwaggerDemo.Filters;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -41,6 +42,7 @@ namespace ASPNETCoreSwaggerDemo
                 });
                 c.IncludeXmlComments(GetXmlCommentsPath());
                 c.DescribeAllEnumsAsStrings();
+                c.OperationFilter<FileUploadOperation>();
             });
         }
 
@@ -53,12 +55,14 @@ namespace ASPNETCoreSwaggerDemo
             }
 
             app.UseMvc();
+            app.UseStaticFiles();
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
                 c.DocumentTitle("My API UI");
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
-                c.SwaggerEndpoint("/swagger/v2/swagger.json", "My API V2");
+                //c.SwaggerEndpoint("/swagger/v2/swagger.json", "My API V2");
+                //c.SwaggerEndpoint(SwaggerConfiguration.EndpointUrl, SwaggerConfiguration.EndpointDescription);
             });
         }
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ASPNETCoreSwaggerDemo.Controllers
@@ -42,6 +43,13 @@ namespace ASPNETCoreSwaggerDemo.Controllers
         public void Post([FromBody]string value)
         {
         }
+
+        //[HttpPost]
+        //[Route("upload")]
+        //public void PostFile(IFormFile uploadedFile)
+        //{
+        //    //TODO: Save file
+        //}
 
         // PUT api/values/5
         [HttpPut("{id}")]
